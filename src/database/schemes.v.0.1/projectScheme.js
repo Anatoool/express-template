@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const projectScheme = new mongoose.Schema({
-  user: String,
+  user_id: String,
   title: String,
   description: String,
   create_date: Date,

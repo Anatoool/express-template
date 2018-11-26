@@ -8,9 +8,15 @@
   },
   "author": "Anatoliy Zaporozhets",
   "license": "MIT",
+  "_moduleAliases": {
+    "@routes": "src/routes",
+    "@handlers": "src/handlers",
+    "@database": "src/database"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "module-alias": "^2.1.0",
     "mongoose": "^5.3.13"
   },
   "devDependencies": {
