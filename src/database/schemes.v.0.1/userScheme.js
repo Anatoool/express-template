@@ -1,27 +1,33 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const userScheme = new mongoose.Schema({
   name: {
     type: String,
-    // lowercase: true,
-    // trim: true,
-    // index: true,
-    // unique: true,
-    // required: true,
+    required: [true, 'can\'t be blank'],
+    trim: true,
   },
   email: {
     type: String,
     lowercase: true,
     trim: true,
-    index: true,
+    required: [true, 'can\'t be blank'],
     unique: true,
-    required: true,
   },
-  password: String,
+  password:  {
+    type: String,
+    required: true,
+    trim: true,
+  },
   role: String,
   confirmed: Boolean,
 },
-{ versionKey: false }
+{
+  versionKey: false,
+  timestamps: true,
+}
 );
+
+userScheme.plugin(uniqueValidator, {message: 'is already taken.'});
 
 module.exports = userScheme;
