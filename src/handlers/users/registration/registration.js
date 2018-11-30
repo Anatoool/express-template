@@ -14,7 +14,6 @@ const userRegistration = async (req, res) => {
   }
 
 
-
   if (errors.length) {
     return res.status(422).send({error: true, errors});
   }

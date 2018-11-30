@@ -25,9 +25,9 @@ const userRegistrationDB = async ({req, res, user}) => {
 
     console.log(err);
 
-    if (err.name === 'MongoError' && err.code === 11000) {
-      return res.status(409).send(err);
-    }
+    // if (err.name === 'MongoError' && err.code === 11000) {
+    //   return res.status(409).send(err);
+    // }
 
     return res.status(500).send(err);
   }
