@@ -11,7 +11,9 @@
   "_moduleAliases": {
     "@routes": "src/routes",
     "@handlers": "src/handlers",
-    "@database": "src/database"
+    "@database": "src/database",
+    "@errors": "src/errors",
+    "@emails": "src/emails"
   },
   "dependencies": {
     "bcrypt": "^3.0.2",
@@ -20,6 +22,7 @@
     "module-alias": "^2.1.0",
     "mongoose": "^5.3.13",
     "mongoose-unique-validator": "^2.0.2",
+    "nodemailer": "^4.7.0",
     "validator": "^10.9.0"
   },
   "devDependencies": {
