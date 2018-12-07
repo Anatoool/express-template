@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 const userSendConfirmationMail = (
   {
     email,
-
+    confirmCode,
   }
   ) => {
   const transporter = nodemailer.createTransport({
@@ -17,8 +17,8 @@ const userSendConfirmationMail = (
   const mailOptions = {
     from: 'tolya0403@gmail.com',
     to: email,
-    subject: 'Sending Email using Node.js',
-    text: 'That was easy!'
+    subject: 'Confirm registration',
+    text: `Confirmation code: ${confirmCode}`
   };
 
   transporter.sendMail(mailOptions, function(error, info){

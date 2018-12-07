@@ -8,20 +8,12 @@
   },
   "author": "Anatoliy Zaporozhets",
   "license": "MIT",
-  "_moduleAliases": {
-    "@routes": "src/routes",
-    "@handlers": "src/handlers",
-    "@database": "src/database",
-    "@errors": "src/errors",
-    "@emails": "src/emails"
-  },
   "dependencies": {
+    "app-root-path": "^2.1.0",
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "module-alias": "^2.1.0",
     "mongoose": "^5.3.13",
-    "mongoose-unique-validator": "^2.0.2",
     "nodemailer": "^4.7.0",
     "validator": "^10.9.0"
   },
