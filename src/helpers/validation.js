@@ -16,6 +16,16 @@ class Validation {
     }
   };
 
+  static password({ password = '', errors = {} }) {
+    if (!password || !validator.isByteLength(password, { min: 6, max: undefined })) {
+      errors.password = {
+        message: "Password should contain more than 5 characters",
+      };
+      errors.error = true;
+      errors.message = `${errors.message} password should contain more than 5 characters,`;
+    }
+  }
+
 }
 
 module.exports = Validation;
