@@ -6,7 +6,7 @@ const userLoginDB = async ({req, res, email}) => {
 
   try{
 
-    return User.find({email});
+    return await User.findOne({email});
 
   } catch (err) {
     return res.status(500).send(err);

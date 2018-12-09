@@ -17,7 +17,7 @@ const userConfirmEmailDB = async ({req, res, code = ''}) => {
       return res.status(403).send({
         error: true,
         _message: "User email confirmation error",
-        message: "User email confirmation error: ",
+        message: "User email confirmation error",
         name: "ConfirmEmailError",
       });
     }
