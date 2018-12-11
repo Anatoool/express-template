@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const userLoginDB = require('./login.db');
+const jwtKey = reqlib('/src/settings/config').jwtKey;
 
 const userLogin = async (req, res) => {
   const authData = req.body;
@@ -8,6 +10,8 @@ const userLogin = async (req, res) => {
   const user = await userLoginDB({req, res, email: email});
   const { password: hashedPassword = '' } = user || {};
   const passwordIsCorrect = await bcrypt.compare(password, hashedPassword);
+
+
 
   if (!passwordIsCorrect || !user) {
     return res.status(403).send({
@@ -18,7 +22,19 @@ const userLogin = async (req, res) => {
     });
   }
 
-  return res.status(200).send({response: 'Success'});
+  const {
+    _id: userId = '',
+    role,
+    name,
+  } = user || {};
+
+  const accessToken = jwt.sign({
+    id: userId,
+    role,
+    name,
+  }, jwtKey, { expiresIn: 60 });
+
+  return res.status(200).send({accessToken: accessToken});
 };
 
 module.exports = userLogin;

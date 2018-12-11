@@ -9,7 +9,9 @@ const userLoginDB = async ({req, res, email}) => {
     return await User.findOne({email});
 
   } catch (err) {
+
     return res.status(500).send(err);
+
   }
 
 };
