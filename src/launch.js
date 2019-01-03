@@ -35,6 +35,6 @@ module.exports = async (config) => {
     });
 
   } catch (err) {
-    console.log('Mongoose connect error!' + err.name);
+    console.log('Mongoose connect error!' + ' ' + err.name);
   }
 };

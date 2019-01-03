@@ -9,13 +9,13 @@ const userSendConfirmationMail = (
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'tolya0403@gmail.com',
-      pass: '7815318220pochta'
+      user: 'nodemailer.email@gmail.com',
+      pass: '987654321test'
     }
   });
 
   const mailOptions = {
-    from: 'tolya0403@gmail.com',
+    from: 'nodemailer.email@gmail.com',
     to: email,
     subject: 'Confirm registration',
     text: `Confirmation code: ${confirmCode}`

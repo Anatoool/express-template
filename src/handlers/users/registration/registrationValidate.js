@@ -20,7 +20,7 @@ const userRegistrationValidate = async ({user, res}) => {
           message: "Email already in use",
         };
         errors.error = true;
-        errors.message = `${errors.message} email already in use`;
+        errors.message = `${errors.message} email already in use,`;
       }
 
     } catch (err) {

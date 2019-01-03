@@ -23,7 +23,7 @@ const userRegistrationDB = async ({req, res, user}) => {
   try{
 
     await newUser.save();
-    userSendConfirmationMail({email: user.email, confirmCode });
+    userSendConfirmationMail({ email: user.email, confirmCode });
     return res.status(200).send({response: 'User was created'});
 
   } catch (err) {
