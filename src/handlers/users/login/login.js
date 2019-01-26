@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userLoginDB = require('./login.db');
-const jwtKey = reqlib('/src/settings/config').jwtKey;
+const jwtKey = require('../../../settings/config').jwtKey;
 
 const userLogin = async (req, res) => {
   const authData = req.body;
@@ -10,8 +10,6 @@ const userLogin = async (req, res) => {
   const user = await userLoginDB({req, res, email: email});
   const { password: hashedPassword = '' } = user || {};
   const passwordIsCorrect = await bcrypt.compare(password, hashedPassword);
-
-
 
   if (!passwordIsCorrect || !user) {
     return res.status(403).send({

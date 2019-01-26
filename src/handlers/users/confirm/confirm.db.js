@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
-const userScheme = reqlib('/src/database/schemes.v.0.1/userScheme');
+const userScheme = require('../../../database/schemes/userScheme');
+
 const User = mongoose.model("User", userScheme);
 
 const userConfirmEmailDB = async ({req, res, code = ''}) => {
-
-  console.log(code);
 
   try{
     const updateResult = await User.findOneAndUpdate(

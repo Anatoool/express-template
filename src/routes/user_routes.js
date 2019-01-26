@@ -1,6 +1,6 @@
-const userRegistration = reqlib('src/handlers/users/registration/registration');
-const userConfirmEmail = reqlib('/src/handlers/users/confirm/confirm');
-const userLogin = reqlib('/src/handlers/users/login/login');
+const userRegistration = require('../handlers/users/registration/registration');
+const userConfirmEmail = require('../handlers/users/confirm/confirm');
+const userLogin = require('../handlers/users/login/login');
 
 module.exports = function(app) {
   app.post('/users', userRegistration);

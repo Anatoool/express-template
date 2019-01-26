@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const userScheme = reqlib('/src/database/schemes.v.0.1/userScheme');
+const userScheme = require('../../../database/schemes/userScheme');
+const userSendConfirmationMail = require('../../../emails/registration-confirmation/registrationConfirm');
+
 const User = mongoose.model("User", userScheme);
-const userSendConfirmationMail = reqlib('/src/emails/registration-confirmation/registrationConfirm');
 
 const userRegistrationDB = async ({req, res, user}) => {
 

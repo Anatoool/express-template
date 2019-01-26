@@ -1,4 +1,3 @@
-global.reqlib = require('app-root-path').require;
 const express = require('express');
 const bodyParser = require('body-parser');
 const config = require('./src/settings/config');

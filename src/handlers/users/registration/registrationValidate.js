@@ -1,11 +1,13 @@
-const templates = require('../_errors/errors');
-const Validation = reqlib('src/helpers/validation');
 const mongoose = require('mongoose');
-const userScheme = reqlib('/src/database/schemes.v.0.1/userScheme');
+
+const errorTemplates = require('../_errors/errors');
+const Validation = require('../../../helpers/validation');
+const userScheme = require('../../../database/schemes/userScheme');
+
 const User = mongoose.model("User", userScheme);
 
 const userRegistrationValidate = async ({user, res}) => {
-  const errors = templates.registration;
+  const errors = {...errorTemplates.registration};
   const { email = '', password = '' } = user;
 
   Validation.email({email, isRequired: true, errors});
