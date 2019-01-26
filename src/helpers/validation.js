@@ -2,6 +2,23 @@ const validator = require('validator');
 
 class Validation {
 
+  static minMaxLength({ value = '', errors = {}, minLength, maxLength, fieldName }) {
+
+    if (!value || !validator.isByteLength(value, { min: minLength, max: undefined })) {
+      errors[fieldName] = {
+        message: `${fieldName} should contain more than ${minLength} characters`,
+      };
+      errors.error = true;
+      errors.message = `${errors.message} ${fieldName} should contain more than ${minLength} characters,`;
+    } else if (!validator.isByteLength(value, { min: undefined, max: maxLength })) {
+      errors[fieldName] = {
+        message: `${fieldName} should contain no more than ${maxLength} characters`,
+      };
+      errors.error = true;
+      errors.message = `${errors.message} ${fieldName} should contain no more than ${maxLength} characters,`;
+    }
+  };
+
   static email({ email = '', isRequired = true, errors = {} }) {
     if (!email && !isRequired) {
       return;

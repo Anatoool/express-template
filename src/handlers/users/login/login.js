@@ -30,9 +30,18 @@ const userLogin = async (req, res) => {
     id: userId,
     role,
     name,
-  }, jwtKey, { expiresIn: 60 });
+  }, jwtKey, { expiresIn: 60 }); // 60 seconds
 
-  return res.status(200).send({accessToken: accessToken});
+  const refreshToken = jwt.sign({
+    id: userId,
+    role,
+    name,
+  }, jwtKey, { expiresIn: "2 days" });
+
+  return res.status(200).send({
+    accessToken,
+    refreshToken,
+  });
 };
 
 module.exports = userLogin;
