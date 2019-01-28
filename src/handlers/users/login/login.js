@@ -24,13 +24,15 @@ const userLogin = async (req, res) => {
     _id: userId = '',
     role,
     name,
+    resource = {},
   } = user || {};
 
   const accessToken = jwt.sign({
     id: userId,
     role,
     name,
-  }, jwtKey, { expiresIn: 60 }); // 60 seconds
+    resource,
+  }, jwtKey, { expiresIn: 120 }); // 120 seconds
 
   const refreshToken = jwt.sign({
     id: userId,

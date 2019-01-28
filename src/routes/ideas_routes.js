@@ -1,16 +1,10 @@
 const createIdea = require('../handlers/ideas/create/createIdea');
+const getIdeas = require('../handlers/ideas/read/getIdeas');
 
 module.exports = function(app) {
 
-  // app.get('/ideas', (req, res) => {
-  //   const token = req.headers.authorization.replace('Bearer ', '');
-  //   try {
-  //     const decoded = jwt.verify(token, 'wrong-secret');
-  //   } catch(err) {
-  //     console.log(err);
-  //   }
-  //     res.send(token)
-  // });
+  app.get('/ideas', getIdeas);
 
   app.post('/ideas', createIdea);
+
 };

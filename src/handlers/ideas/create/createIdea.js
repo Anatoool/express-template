@@ -1,7 +1,19 @@
+const jwt = require('jsonwebtoken');
+const jwtKey = require('../../../settings/config').jwtKey;
 const createIdeaValidate = require('./createIdeaValidate');
-// const userRegistrationDB = require('./registration.db');
+const createIdeaDB = require('./createIdea.db');
 
 const createIdea = async (req, res) => {
+  const token = req.get('Authorization') || '';
+  let author = '';
+
+  try {
+    const tokenInfo = jwt.verify(token, jwtKey);
+    author = tokenInfo.id;
+  } catch (err) {
+    return res.status(401).send(err);
+  }
+
   const idea = req.body;
 
   const errors = await createIdeaValidate({idea, req, res});
@@ -10,8 +22,7 @@ const createIdea = async (req, res) => {
     return res.status(422).send({...errors});
   }
 
-  // userRegistrationDB({req, res, user});
-  return res.status(200).send(req.body);
+  createIdeaDB({req, res, idea, author});
 };
 
 module.exports = createIdea;
