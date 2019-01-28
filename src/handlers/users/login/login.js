@@ -32,7 +32,7 @@ const userLogin = async (req, res) => {
     role,
     name,
     resource,
-  }, jwtKey, { expiresIn: 120 }); // 120 seconds
+  }, jwtKey, { expiresIn: 120 * 100000 }); // 120 seconds * 100 000 for tests
 
   const refreshToken = jwt.sign({
     id: userId,

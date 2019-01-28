@@ -13,12 +13,12 @@ const unauthGetIdeasDB = async ({req, res}) => {
 
   try{
 
-    const options = {
-      limit: +pageSize,
-      skip: +pageSize * (+page - 1),
+    // const ideas = await Idea.paginate({}, {page, limit}).populate('author', 'name email');
+    const populate = {
+      path: 'author',
+      select: 'name resource'
     };
-
-    const ideas = await Idea.find({}, null, options).populate('author', 'name email');
+    const ideas = await Idea.paginate({}, {page: +page, limit: +pageSize, populate});
 
     return res.status(200).send(ideas);
 
