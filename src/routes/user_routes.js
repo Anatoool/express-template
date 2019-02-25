@@ -4,6 +4,10 @@ const userLogin = require('../handlers/users/login/login');
 
 module.exports = function(app) {
   app.post('/users', userRegistration);
+
   app.post('/users/confirm', userConfirmEmail);
+
   app.post('/auth/login', userLogin);
+
+
 };

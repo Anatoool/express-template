@@ -18,6 +18,10 @@ const userScheme = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  refreshTokens: {
+    type: Array,
+    default: [],
+  },
   role: String,
   confirmed: Boolean,
   confirmCode: String,
