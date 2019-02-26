@@ -4,8 +4,6 @@ const userScheme = require('../../schemes/userScheme');
 const User = mongoose.model("User", userScheme);
 
 const usersFindByIdAndUpdate = async ({
-  req,
-  res,
   id,
   update = {},
 }) => {
@@ -16,7 +14,7 @@ const usersFindByIdAndUpdate = async ({
 
   } catch (err) {
 
-    return res.status(500).send(err);
+    throw err;
 
   }
 

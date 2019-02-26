@@ -15,6 +15,11 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(bodyParser.json());
 appRoutes(app);
 
+app.use(function(err, req, res, next) {
+  res.status(500).send(err);
+  next(err);
+});
+
 app.listen(config.port, () => {
   console.log('Server started on ' + config.port);
 });

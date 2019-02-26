@@ -10,7 +10,8 @@ const userLogin = async (req, res) => {
   const { email = '', password = '' } = authData;
 
   const conditions = { email };
-  const user = await usersFindOne({req, res, conditions});
+
+  const user = await usersFindOne({ conditions });
 
   const {
     password: hashedPassword = '',
@@ -64,7 +65,7 @@ const userLogin = async (req, res) => {
     refreshTokens.shift();
   }
 
-  const response = await usersFindByIdAndUpdate({
+  await usersFindByIdAndUpdate({
     req,
     res,
     id: userId,
@@ -77,7 +78,6 @@ const userLogin = async (req, res) => {
     accessToken,
     refreshToken,
     expirationDate: moment().add(accessLifeTime, 'seconds').toISOString(),
-    response,
   });
 };
 

@@ -4,8 +4,6 @@ const userScheme = require('../../schemes/userScheme');
 const User = mongoose.model("User", userScheme);
 
 const usersFindOne = async ({
-  req,
-  res,
   conditions = {},
 }) => {
 
@@ -15,7 +13,7 @@ const usersFindOne = async ({
 
   } catch (err) {
 
-    return res.status(500).send(err);
+    throw err;
 
   }
 
