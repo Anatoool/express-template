@@ -43,7 +43,7 @@ const userLogin = async (req, res) => {
     resource = {},
   } = user || {};
 
-  const accessLifeTime = 300; //
+  const accessLifeTime = 300; // 60 seconds * 5
 
   const accessToken = jwt.sign({
     id: userId,
@@ -51,7 +51,7 @@ const userLogin = async (req, res) => {
     name,
     resource,
     type: 'access',
-  }, jwtKey, { expiresIn: accessLifeTime }); // 60 seconds * 5
+  }, jwtKey, { expiresIn: accessLifeTime });
 
   const refreshToken = jwt.sign({
     id: userId,

@@ -5,13 +5,21 @@ const createIdeaDB = require('./createIdea.db');
 
 const createIdea = async (req, res) => {
   const token = req.get('Authorization') || '';
-  let author = '';
+  let author = '222';
 
   try {
     const tokenInfo = jwt.verify(token, jwtKey);
     author = tokenInfo.id;
   } catch (err) {
-    return res.status(401).send(err);
+
+    if (
+      err.name === 'TokenExpiredError' ||
+      err.name === 'JsonWebTokenError'
+    ) {
+      return res.status(401).send(err);
+    }
+
+    throw err;
   }
 
   const idea = req.body;
