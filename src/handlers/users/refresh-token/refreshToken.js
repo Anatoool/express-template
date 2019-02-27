@@ -48,8 +48,6 @@ const userRefreshToken = async (req, res) => {
   refreshTokens[oldRefreshTokenIndex] = newRefreshToken;
 
   await usersFindByIdAndUpdate({
-    req,
-    res,
     id: userId,
     update: {
       refreshTokens,

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 const chalk = require('chalk');
+const deleteExpiredRefreshTokens = require('./helpers/background-scripts/deleteExpiredRefreshTokens');
 
 const connected = chalk.bold.cyan;
 const error = chalk.bold.yellow;
@@ -13,10 +14,9 @@ module.exports = async (config) => {
     useNewUrlParser: true,
   };
   try {
-    await mongoose.connect('mongodb://localhost:' + config.dbPort +'/first-db', mongooseOptions);
 
     mongoose.connection.on('connected', function(){
-      console.log(connected("Mongoose default connection is open to ", 'mongodb://localhost:' + config.dbPort +'/example-db'));
+      console.log(connected("Mongoose default connection is open to ", 'mongodb://localhost:' + config.dbPort +'/first-db'));
     });
 
     mongoose.connection.on('error', function(err){
@@ -33,6 +33,9 @@ module.exports = async (config) => {
         process.exit(0)
       });
     });
+
+    await mongoose.connect('mongodb://localhost:' + config.dbPort +'/first-db', mongooseOptions);
+    deleteExpiredRefreshTokens();
 
   } catch (err) {
     console.log('Mongoose connect error!' + ' ' + err.name);
