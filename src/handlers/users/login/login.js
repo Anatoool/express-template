@@ -1,9 +1,7 @@
-const moment = require('moment');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const usersFindOne = require('../../../database/queries/users/usersFindOne');
 const usersFindByIdAndUpdate = require('../../../database/queries/users/usersFindByIdAndUpdate');
-const jwtKey = require('../../../settings/config').jwtKey;
+const createTokens = require('../../../helpers/createTokens');
 
 const userLogin = async (req, res) => {
   const authData = req.body;
@@ -36,29 +34,9 @@ const userLogin = async (req, res) => {
     });
   }
 
-  const {
-    _id: userId = '',
-    role,
-    name,
-    resource = {},
-  } = user || {};
+  const { _id: userId } = user;
 
-  const accessLifeTime = 300; // 60 seconds * 5
-
-  const accessToken = jwt.sign({
-    id: userId,
-    role,
-    name,
-    resource,
-    type: 'access',
-  }, jwtKey, { expiresIn: accessLifeTime });
-
-  const refreshToken = jwt.sign({
-    id: userId,
-    role,
-    name,
-    type: 'refresh',
-  }, jwtKey, { expiresIn: "2 days" });
+  const { accessToken, refreshToken, expirationDate } = createTokens(user);
 
   refreshTokens.push(refreshToken);
   if (refreshTokens.length > 5) {
@@ -77,7 +55,7 @@ const userLogin = async (req, res) => {
   return res.status(200).send({
     accessToken,
     refreshToken,
-    expirationDate: moment().add(accessLifeTime, 'seconds').toISOString(),
+    expirationDate,
   });
 };
 
