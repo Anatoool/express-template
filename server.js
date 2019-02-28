@@ -4,14 +4,14 @@ const config = require('./src/settings/config');
 const appRoutes = require('./src/routes/index');
 const swaggerUi = require('swagger-ui-express');
 const launch = require('./src/launch');
-const swaggerDocument = require('./swagger.json');
+const createSwaggerDocument = require('./swagger/svaggerDocument');
 
 launch(config);
 
 const app = express();
 app.disable('x-powered-by');
 
-app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(createSwaggerDocument()));
 app.use(bodyParser.json());
 appRoutes(app);
 

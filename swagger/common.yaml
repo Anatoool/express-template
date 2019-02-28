@@ -1,0 +1,7 @@
+swagger: "2.0"
+info:
+  description: "This is a sample swagger document."
+  version: "1.0.0"
+  title: "Swagger Template"
+  contact:
+    email: "anatoool@yandex.ru"
