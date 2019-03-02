@@ -1,0 +1,59 @@
+paths:
+  /users:
+    post:
+      tags:
+      - "Users"
+      summary: "User registration"
+      description: ""
+      operationId: "addUser"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            name:
+              type: "string"
+            email:
+              type: "string"
+            password:
+              type: "string"
+      responses:
+        422:
+          description: "Invalid input"
+          schema:
+            type: "object"
+            properties:
+              _message:
+                type: "string"
+                example: "User registration failed"
+              message:
+                type: "string"
+                example: "User registration failed: password should contain more than 5 characters, email already in use"
+              name:
+                type: "string"
+                example: "RegistrationError"
+              password:
+                type: "object"
+                properties:
+                  message:
+                    type: "string"
+                    example: "Password should contain more than 5 characters"
+              error:
+                type: "boolean"
+                example: true
+              password:
+                type: "object"
+                properties:
+                  message:
+                    type: "string"
+                    example: "Email already in use || Invalid email format"
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              response:
+                type: "string"

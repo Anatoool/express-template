@@ -3,11 +3,13 @@ const YAML = require('yamljs');
 const createSwaggerDocument = () => {
 
   const common = YAML.load('./swagger/common.yaml');
-  const pets = YAML.load('./swagger/pets.yaml');
+  const users = YAML.load('./swagger/users.yaml');
 
   const swaggerDocument = {
     ...common,
-    ...pets,
+    paths: {
+      ...users.paths,
+    },
   };
 
   return swaggerDocument;
