@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken');
-const usersFindByIdAndUpdate = require('../../database/queries/users/usersFindByIdAndUpdate');
-const usersFind = require('../../database/queries/users/usersFind');
+const mongooseFindByIdAndUpdate = require('../../database/queries/mongooseFindByIdAndUpdate');
+const mongooseFind = require('../../database/queries/mongooseFind');
 const jwtKey = require('../../settings/config').jwtKey;
 
 const deleteExpiredRefreshTokens = async () => {
-  const users = await usersFind({
+  const users = await mongooseFind({
+    scheme: 'user',
     conditions: {
       confirmed: true,
     },
@@ -28,7 +29,8 @@ const deleteExpiredRefreshTokens = async () => {
       return tokenValid;
     });
 
-    await usersFindByIdAndUpdate({
+    await mongooseFindByIdAndUpdate({
+      scheme: 'user',
       id: user._id,
       update: {
         refreshTokens: newRefreshTokens,

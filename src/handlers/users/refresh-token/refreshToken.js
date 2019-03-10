@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-const usersFindOne = require('../../../database/queries/users/usersFindOne');
-const usersFindByIdAndUpdate = require('../../../database/queries/users/usersFindByIdAndUpdate');
+const mongooseFindOne = require('../../../database/queries/mongooseFindOne');
+const mongooseFindByIdAndUpdate = require('../../../database/queries/mongooseFindByIdAndUpdate');
 const createTokens = require('../../../helpers/createTokens');
 const jwtKey = require('../../../settings/config').jwtKey;
 
@@ -32,7 +32,7 @@ const userRefreshToken = async (req, res) => {
 
   const { id: userId = '' } = tokenInfo;
 
-  const user = await usersFindOne({ conditions: { _id: userId } });
+  const user = await mongooseFindOne({ scheme: 'user', conditions: { _id: userId } });
   const { refreshTokens = [] } = user;
 
   const oldRefreshTokenIndex = refreshTokens.lastIndexOf(refreshToken);
@@ -47,7 +47,8 @@ const userRefreshToken = async (req, res) => {
   const { accessToken, refreshToken: newRefreshToken, expirationDate } = createTokens(user);
   refreshTokens[oldRefreshTokenIndex] = newRefreshToken;
 
-  await usersFindByIdAndUpdate({
+  await mongooseFindByIdAndUpdate({
+    scheme: 'user',
     id: userId,
     update: {
       refreshTokens,

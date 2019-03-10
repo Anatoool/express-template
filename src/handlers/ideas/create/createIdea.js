@@ -5,7 +5,7 @@ const createIdeaDB = require('./createIdea.db');
 
 const createIdea = async (req, res) => {
   const token = req.get('Authorization') || '';
-  let author = '222';
+  let author = '';
 
   try {
     const tokenInfo = jwt.verify(token, jwtKey);

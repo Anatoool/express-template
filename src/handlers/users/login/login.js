@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
-const usersFindOne = require('../../../database/queries/users/usersFindOne');
-const usersFindByIdAndUpdate = require('../../../database/queries/users/usersFindByIdAndUpdate');
+const mongooseFindOne = require('../../../database/queries/mongooseFindOne');
+const mongooseFindByIdAndUpdate = require('../../../database/queries/mongooseFindByIdAndUpdate');
 const createTokens = require('../../../helpers/createTokens');
 
 const userLogin = async (req, res) => {
@@ -9,7 +9,7 @@ const userLogin = async (req, res) => {
 
   const conditions = { email };
 
-  const user = await usersFindOne({ conditions });
+  const user = await mongooseFindOne({ scheme: 'user', conditions });
 
   const {
     password: hashedPassword = '',
@@ -43,9 +43,8 @@ const userLogin = async (req, res) => {
     refreshTokens.shift();
   }
 
-  await usersFindByIdAndUpdate({
-    req,
-    res,
+  await mongooseFindByIdAndUpdate({
+    scheme: 'user',
     id: userId,
     update: {
       refreshTokens,
