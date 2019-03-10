@@ -12,12 +12,10 @@ const mongooseFindOne = async ({
 
     switch (scheme) {
       case 'user':
-        return await User.find(conditions);
+        return await User.findOne(conditions);
       default:
         throw ({ error: "Invalid scheme in mongooseFindOne"});
     }
-
-    return await User.findOne(conditions);
 
   } catch (err) {
 

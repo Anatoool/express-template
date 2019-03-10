@@ -1,0 +1,50 @@
+paths:
+  /auth/login:
+    post:
+      tags:
+      - "Auth"
+      summary: "User login"
+      description: ""
+      operationId: "loginUser"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            email:
+              type: "string"
+            password:
+              type: "string"
+      responses:
+        200:
+          description: "successful login"
+          schema:
+            type: "object"
+            properties:
+              accessToken:
+                type: "string"
+              refreshToken:
+                type: "string"
+              expirationDate:
+                type: "string"
+                example: "2019-03-10T11:25:00.899Z"
+        401:
+          description: "User login error"
+          schema:
+            type: "object"
+            properties:
+              _message:
+                type: "string"
+                example: "User does not exist or password is wrong || Email is not confirmed"
+              message:
+                type: "string"
+                example: "User does not exist or password is wrong || Email is not confirmed"
+              name:
+                type: "string"
+                example: "UserLoginError"
+              error:
+                type: "boolean"
+                example: true

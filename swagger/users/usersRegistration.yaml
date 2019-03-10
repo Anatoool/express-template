@@ -44,7 +44,7 @@ paths:
               error:
                 type: "boolean"
                 example: true
-              password:
+              email:
                 type: "object"
                 properties:
                   message:
