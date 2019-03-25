@@ -17,6 +17,7 @@ const userRefreshToken = async (req, res) => {
       err.name === 'TokenExpiredError' ||
       err.name === 'JsonWebTokenError'
     ) {
+      err.error = true;
       return res.status(401).send(err);
     }
 
@@ -27,6 +28,7 @@ const userRefreshToken = async (req, res) => {
     return res.status(401).send({
       name: "JsonWebTokenError",
       message: "Invalid token type",
+      error: true,
     });
   }
 
@@ -41,6 +43,7 @@ const userRefreshToken = async (req, res) => {
     return res.status(401).send({
       name: "RefreshTokenError",
       message: "Unknown refresh token",
+      error: true,
     });
   }
 

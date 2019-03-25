@@ -1,26 +1,24 @@
 paths:
-  /auth/login:
+  /auth/refresh:
     post:
       tags:
       - "Auth"
-      summary: "User login"
+      summary: "Refresh token"
       description: ""
-      operationId: "loginUser"
+      operationId: "refreshToken"
       parameters:
       - in: "body"
         name: "body"
-        description: "User object"
+        description: "Refresh object"
         required: true
         schema:
           type: "object"
           properties:
-            email:
-              type: "string"
-            password:
+            refreshToken:
               type: "string"
       responses:
         200:
-          description: "Successful login"
+          description: "Successful refresh"
           schema:
             type: "object"
             properties:
@@ -32,19 +30,16 @@ paths:
                 type: "string"
                 example: "2019-03-10T11:25:00.899Z"
         401:
-          description: "User login error"
+          description: "Refresh token error"
           schema:
             type: "object"
             properties:
-              _message:
-                type: "string"
-                example: "User does not exist or password is wrong || Email is not confirmed"
               message:
                 type: "string"
-                example: "User does not exist or password is wrong || Email is not confirmed"
+                example: "Invalid token type || Unknown refresh token"
               name:
                 type: "string"
-                example: "UserLoginError"
+                example: "TokenExpiredError || JsonWebTokenError || RefreshTokenError"
               error:
                 type: "boolean"
                 example: true
