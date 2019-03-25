@@ -1,0 +1,44 @@
+paths:
+  /users/confirm:
+    post:
+      tags:
+      - "Users"
+      summary: "User confirm email"
+      description: ""
+      operationId: "confirmEmail"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Confirm object"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            code:
+              type: "string"
+      responses:
+        200:
+          description: "successful confirm"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+                example: "success"
+        403:
+          description: "Confirm Email Error"
+          schema:
+            type: "object"
+            properties:
+              _message:
+                type: "string"
+                example: "User email confirmation error"
+              message:
+                type: "string"
+                example: "User email confirmation error"
+              name:
+                type: "string"
+                example: "ConfirmEmailError"
+              error:
+                type: "boolean"
+                example: true
