@@ -3,5 +3,6 @@ module.exports = {
     _message: "User registration failed",
     message: "User registration failed:",
     name: "RegistrationError",
+    messages: {},
   },
 };

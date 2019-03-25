@@ -13,14 +13,12 @@ const userRegistrationValidate = async ({user, res}) => {
   Validation.email({email, isRequired: true, errors});
   Validation.password({password, errors});
 
-  if (!errors.email){
+  if (!errors.messages.email){
     try{
       let users;
       users = await User.find({ email });
       if (users.length) {
-        errors.email = {
-          message: "Email already in use",
-        };
+        errors.messages.email = "Email already in use";
         errors.error = true;
         errors.message = `${errors.message} email already in use,`;
       }

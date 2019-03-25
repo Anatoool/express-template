@@ -35,21 +35,18 @@ paths:
               name:
                 type: "string"
                 example: "RegistrationError"
-              password:
+              messages:
                 type: "object"
                 properties:
-                  message:
+                  password:
                     type: "string"
                     example: "Password should contain more than 5 characters"
+                  email:
+                    type: "string"
+                    example: "Email already in use || Invalid email format"
               error:
                 type: "boolean"
                 example: true
-              email:
-                type: "object"
-                properties:
-                  message:
-                    type: "string"
-                    example: "Email already in use || Invalid email format"
         200:
           description: "successful operation"
           schema:
