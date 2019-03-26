@@ -5,3 +5,19 @@ info:
   title: "Swagger Template"
   contact:
     email: "anatoool@yandex.ru"
+
+schemes:
+  - http
+  - https
+
+securityDefinitions:
+  JWT:
+    type: apiKey
+    name: Authorization
+    in: header
+
+paths:
+  /ideas:
+    get:
+      security:
+        - JWT: []

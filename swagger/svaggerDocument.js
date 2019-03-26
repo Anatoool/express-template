@@ -10,13 +10,19 @@ const createSwaggerDocument = () => {
   const usersLogin = YAML.load('./swagger/users/usersLogin.yaml');
   const usersRefreshToken = YAML.load('./swagger/users/usersRefreshToken.yaml');
 
+  // ideas routes
+  const getIdeas = YAML.load('./swagger/ideas/getIdeas.yaml');
+
   const swaggerDocument = {
     ...common,
     paths: {
+      // users
       ...usersRegistration.paths,
       ...usersConfirmEmail.paths,
       ...usersLogin.paths,
       ...usersRefreshToken.paths,
+      // ideas
+      ...getIdeas.paths,
     },
   };
 
