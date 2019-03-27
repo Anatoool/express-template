@@ -12,6 +12,7 @@ const createSwaggerDocument = () => {
 
   // ideas routes
   const getIdeas = YAML.load('./swagger/ideas/getIdeas.yaml');
+  const createIdea = YAML.load('./swagger/ideas/createIdea.yaml');
 
   const swaggerDocument = {
     ...common,
@@ -22,7 +23,12 @@ const createSwaggerDocument = () => {
       ...usersLogin.paths,
       ...usersRefreshToken.paths,
       // ideas
-      ...getIdeas.paths,
+      '/ideas': {
+        ...getIdeas.paths['/ideas'],
+        ...createIdea.paths['/ideas'],
+      },
+
+
     },
   };
 

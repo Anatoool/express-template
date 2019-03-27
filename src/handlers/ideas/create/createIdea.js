@@ -1,36 +1,31 @@
-const jwt = require('jsonwebtoken');
-const jwtKey = require('../../../settings/config').jwtKey;
+const mongoose = require('mongoose');
 const createIdeaValidate = require('./createIdeaValidate');
-const createIdeaDB = require('./createIdea.db');
+const ideaScheme = require('../../../database/schemes/ideaScheme');
+
+const Idea = mongoose.model('Idea', ideaScheme);
 
 const createIdea = async (req, res) => {
-  const token = req.get('Authorization') || '';
-  let author = '';
+  const { user = {}, body: idea = {} } = req;
 
-  try {
-    const tokenInfo = jwt.verify(token, jwtKey);
-    author = tokenInfo.id;
-  } catch (err) {
+  // if (user.role !== 'user') {
+  //   return res.status(422).send({...errors});
+  // }
 
-    if (
-      err.name === 'TokenExpiredError' ||
-      err.name === 'JsonWebTokenError'
-    ) {
-      return res.status(401).send(err);
-    }
-
-    throw err;
-  }
-
-  const idea = req.body;
-
-  const errors = await createIdeaValidate({idea, req, res});
-
+  const errors = await createIdeaValidate({ idea });
   if (errors.error) {
     return res.status(422).send({...errors});
   }
 
-  createIdeaDB({req, res, idea, author});
+  const { title, description } = idea;
+
+  const newIdea = new Idea({
+    title,
+    description,
+    author: user.id,
+  });
+
+  const savedIdeaResponse = await newIdea.save();
+  return res.status(200).send(savedIdeaResponse);
 };
 
 module.exports = createIdea;

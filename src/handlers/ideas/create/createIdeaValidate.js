@@ -1,7 +1,7 @@
 const errorTemplates = require('../_errors/errors');
 const Validation = require('../../../helpers/validation');
 
-const createIdeaValidate = async ({idea, res}) => {
+const createIdeaValidate = async ({ idea }) => {
   const errors = {...errorTemplates.creation};
   const { title = '', description = '' } = idea;
 

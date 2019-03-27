@@ -1,0 +1,52 @@
+paths:
+  /ideas:
+    post:
+      security:
+        - JWT: []
+      tags:
+      - "Ideas"
+      summary: "Create idea"
+      description: ""
+      operationId: "createIdea"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Idea object"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            title:
+              type: "string"
+            description:
+              type: "string"
+      responses:
+        200:
+          description: "Successful idea creation"
+          schema:
+            type: "object"
+            properties:
+              title:
+                type: "string"
+              description:
+                type: "string"
+              author:
+                type: "string"
+                example: "jksdn23r88bnz32fdpq9cs67k6djc12n"
+#        401:
+#          description: "User login error"
+#          schema:
+#            type: "object"
+#            properties:
+#              _message:
+#                type: "string"
+#                example: "User does not exist or password is wrong || Email is not confirmed"
+#              message:
+#                type: "string"
+#                example: "User does not exist or password is wrong || Email is not confirmed"
+#              name:
+#                type: "string"
+#                example: "UserLoginError"
+#              error:
+#                type: "boolean"
+#                example: true
