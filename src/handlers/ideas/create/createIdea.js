@@ -7,10 +7,6 @@ const Idea = mongoose.model('Idea', ideaScheme);
 const createIdea = async (req, res) => {
   const { user = {}, body: idea = {} } = req;
 
-  // if (user.role !== 'user') {
-  //   return res.status(422).send({...errors});
-  // }
-
   const errors = await createIdeaValidate({ idea });
   if (errors.error) {
     return res.status(422).send({...errors});

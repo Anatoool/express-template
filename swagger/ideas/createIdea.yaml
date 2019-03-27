@@ -33,20 +33,29 @@ paths:
               author:
                 type: "string"
                 example: "jksdn23r88bnz32fdpq9cs67k6djc12n"
-#        401:
-#          description: "User login error"
-#          schema:
-#            type: "object"
-#            properties:
-#              _message:
-#                type: "string"
-#                example: "User does not exist or password is wrong || Email is not confirmed"
-#              message:
-#                type: "string"
-#                example: "User does not exist or password is wrong || Email is not confirmed"
-#              name:
-#                type: "string"
-#                example: "UserLoginError"
-#              error:
-#                type: "boolean"
-#                example: true
+        422:
+          description: "Invalid input"
+          schema:
+            type: "object"
+            properties:
+              _message:
+                type: "string"
+                example: "Idea creation failed"
+              message:
+                type: "string"
+                example: "Idea creation failed: {additional info}"
+              name:
+                type: "string"
+                example: "RegistrationError"
+              messages:
+                type: "object"
+                properties:
+                  title:
+                    type: "string"
+                    example: "Title error example"
+                  description:
+                    type: "string"
+                    example: "Description error example"
+              error:
+                type: "boolean"
+                example: true
