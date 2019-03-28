@@ -16,8 +16,10 @@ paths:
           properties:
             email:
               type: "string"
+              example: "anatoool@yandex.ru"
             password:
               type: "string"
+              example: "123456"
       responses:
         200:
           description: "Successful login"
