@@ -4,12 +4,14 @@ const mongooseFind = require('../../database/queries/mongooseFind');
 const jwtKey = require('../../settings/config').jwtKey;
 
 const deleteExpiredRefreshTokens = async () => {
-  const users = await mongooseFind({
+  const usersFindObject = await mongooseFind({
     scheme: 'user',
     conditions: {
       confirmed: true,
     },
   });
+
+  const users = usersFindObject.items;
 
   if (!Array.isArray(users)) {
     return;

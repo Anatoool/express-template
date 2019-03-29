@@ -7,21 +7,47 @@ const Idea = mongoose.model('Idea', ideaScheme);
 
 const mongooseFind = async ({
   scheme = '',
-  conditions = {},
-  projection = {},
-  options = {},
+  conditions = {}, // conditions of find
+  projection = null, // return fields
+  options = {}, // options of query
+  pagination = {
+    page: 1,
+    pageSize: 25,
+  },
 }) => {
 
-  try{
+  const resultOptions = {
+    ...options,
+    limit: +pagination.pageSize,
+    skip: (+pagination.page - 1) * +pagination.pageSize,
+  };
+
+  const resultObject = {};
+  let total = 0;
+
+  try {
 
     switch (scheme) {
       case 'user':
-        return await User.find(conditions);
+        resultObject.items = await User.find(conditions, projection, resultOptions);
+        total = await User.countDocuments(conditions);
+        break;
       case 'idea':
-        return await Idea.find(conditions);
+        resultObject.items = await Idea.find(conditions, projection, resultOptions);
+        total = await Idea.countDocuments(conditions);
+        break;
       default:
         throw ({ error: "Invalid scheme in mongooseFind"});
     }
+
+    resultObject.pagination = {
+      page: pagination.page,
+      pageSize: pagination.pageSize,
+      total,
+      maxPages: Math.ceil(total / pagination.pageSize),
+    };
+
+    return resultObject;
 
   } catch (err) {
 

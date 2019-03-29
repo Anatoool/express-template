@@ -9,9 +9,11 @@ paths:
       description: ""
       operationId: "getIdeas"
       parameters:
-      - name: "page"
-        in: "query"
-        description: "page"
+      - in: "query"
+        name: "page"
+        type: "number"
+      - in: "query"
+        name: "pageSize"
         type: "number"
       responses:
         200:

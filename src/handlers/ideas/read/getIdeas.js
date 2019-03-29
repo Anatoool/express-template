@@ -1,17 +1,21 @@
 const mongooseFind = require('../../../database/queries/mongooseFind');
 
 const getIdeas = async (req, res) => {
-  const { user = {} } = req;
+  const { query = {}, user = {} } = req;
 
-  let ideas;
+  let ideasFindObject;
+
   switch (user.role) {
     case 'user':
     case 'guest':
     default:
-      ideas = await mongooseFind({ scheme: 'idea' });
+      ideasFindObject = await mongooseFind({
+        scheme: 'idea',
+        pagination: { page: query.page, pageSize: query.pageSize }
+      });
   }
 
-  return res.status(200).send(ideas);
+  return res.status(200).send(ideasFindObject);
 
 };
 
