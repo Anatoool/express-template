@@ -11,7 +11,10 @@ const getIdeas = async (req, res) => {
     default:
       ideasFindObject = await mongooseFind({
         scheme: 'idea',
-        pagination: { page: query.page, pageSize: query.pageSize }
+        pagination: { page: query.page, pageSize: query.pageSize },
+        options: {
+          populate: [{ path: 'author', select: 'name role' }]
+        }
       });
   }
 

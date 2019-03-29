@@ -21,24 +21,20 @@ paths:
           schema:
             type: "object"
             properties:
-              accessToken:
-                type: "string"
-#              refreshToken:
-#                type: "string"
-#              expirationDate:
-#                type: "string"
-#                example: "2019-03-10T11:25:00.899Z"
-#        401:
-#          description: "Refresh token error"
-#          schema:
-#            type: "object"
-#            properties:
-#              message:
-#                type: "string"
-#                example: "Invalid token type || Unknown refresh token"
-#              name:
-#                type: "string"
-#                example: "TokenExpiredError || JsonWebTokenError || RefreshTokenError"
-#              error:
-#                type: "boolean"
-#                example: true
+              items:
+                type: "array"
+                items:
+                  type: "object"
+              pagination:
+                type: "object"
+                properties:
+                  page:
+                    type: "string"
+                  pageSize:
+                    type: "string"
+                  total:
+                    type: "string"
+                  maxPages:
+                    type: "string"
+
+

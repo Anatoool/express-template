@@ -4,7 +4,7 @@ const config = require('./src/settings/config');
 const appRoutes = require('./src/routes/index');
 const swaggerUi = require('swagger-ui-express');
 const launch = require('./src/launch');
-const createSwaggerDocument = require('./swagger/svaggerDocument');
+const createSwaggerDocument = require('./swagger/swaggerDocument');
 
 launch(config);
 

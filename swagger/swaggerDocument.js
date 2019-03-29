@@ -4,6 +4,9 @@ const createSwaggerDocument = () => {
 
   const common = YAML.load('./swagger/common.yaml');
 
+  // definitions of models
+  const ideaDefinition = YAML.load('./swagger/_definitions/Idea.yaml');
+
   // user routes
   const usersRegistration = YAML.load('./swagger/users/usersRegistration.yaml');
   const usersConfirmEmail = YAML.load('./swagger/users/usersConfirmEmail.yaml');
@@ -26,9 +29,10 @@ const createSwaggerDocument = () => {
       '/ideas': {
         ...getIdeas.paths['/ideas'],
         ...createIdea.paths['/ideas'],
-      },
-
-
+        },
+    },
+    definitions: {
+      ...ideaDefinition,
     },
   };
 
