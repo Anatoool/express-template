@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const createIdeaValidate = require('./createIdeaValidate');
 const ideaScheme = require('../../../database/schemes/ideaScheme');
+const mongooseFindById = require('../../../database/queries/mongooseFindById');
+const ideaPopulations = require('../populations');
 
 const Idea = mongoose.model('Idea', ideaScheme);
 
@@ -20,8 +22,16 @@ const createIdea = async (req, res) => {
     author: user.id,
   });
 
-  const savedIdeaResponse = await newIdea.save();
-  return res.status(200).send(savedIdeaResponse);
+  const savedIdea = await newIdea.save();
+  const populatedIdea = await mongooseFindById({
+    id: savedIdea._id,
+    scheme: 'idea',
+    options: {
+      populate: [ideaPopulations.author]
+    }
+  });
+
+  return res.status(200).send(populatedIdea);
 };
 
 module.exports = createIdea;

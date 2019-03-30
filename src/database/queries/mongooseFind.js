@@ -10,16 +10,15 @@ const mongooseFind = async ({
   conditions = {}, // conditions of find
   projection = null, // return fields
   options = {}, // options of query
-  pagination = {
-    page: 1,
-    pageSize: 25,
-  },
+  pagination = {},
 }) => {
+
+  const { page = 1, pageSize = 25 } = pagination;
 
   const resultOptions = {
     ...options,
-    limit: +pagination.pageSize,
-    skip: (+pagination.page - 1) * +pagination.pageSize,
+    limit: +pageSize,
+    skip: (+page - 1) * +pageSize,
   };
 
   const resultObject = {};
@@ -41,10 +40,10 @@ const mongooseFind = async ({
     }
 
     resultObject.pagination = {
-      page: pagination.page,
-      pageSize: pagination.pageSize,
+      page: +page,
+      pageSize: +pageSize,
       total,
-      maxPages: Math.ceil(total / pagination.pageSize),
+      maxPages: Math.ceil(total / pageSize),
     };
 
     return resultObject;

@@ -1,8 +1,8 @@
 paths:
-  /auth/refresh:
+  /users/refresh:
     post:
       tags:
-      - "Auth"
+      - "Users"
       summary: "Refresh token"
       description: ""
       operationId: "refreshToken"

@@ -11,8 +11,8 @@ module.exports = function(app) {
 
   app.post('/users/confirm', asyncHandler(userConfirmEmail));
 
-  app.post('/auth/login', asyncHandler(userLogin));
+  app.post('/users/login', asyncHandler(userLogin));
 
-  app.post('/auth/refresh', asyncHandler(userRefreshToken));
+  app.post('/users/refresh', asyncHandler(userRefreshToken));
 
 };

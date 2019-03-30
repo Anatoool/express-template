@@ -1,8 +1,8 @@
 paths:
-  /auth/login:
+  /users/login:
     post:
       tags:
-      - "Auth"
+      - "Users"
       summary: "User login"
       description: ""
       operationId: "loginUser"

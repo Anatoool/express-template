@@ -24,17 +24,9 @@ paths:
               items:
                 type: "array"
                 items:
-                  type: "object"
+                  $ref: "#/definitions/Idea"
               pagination:
                 type: "object"
-                properties:
-                  page:
-                    type: "string"
-                  pageSize:
-                    type: "string"
-                  total:
-                    type: "string"
-                  maxPages:
-                    type: "string"
+                $ref: "#/definitions/Pagination"
 
 

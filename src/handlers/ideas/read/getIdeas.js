@@ -1,3 +1,4 @@
+const ideaPopulations = require('../populations');
 const mongooseFind = require('../../../database/queries/mongooseFind');
 
 const getIdeas = async (req, res) => {
@@ -13,7 +14,7 @@ const getIdeas = async (req, res) => {
         scheme: 'idea',
         pagination: { page: query.page, pageSize: query.pageSize },
         options: {
-          populate: [{ path: 'author', select: 'name role' }]
+          populate: [ideaPopulations.author]
         }
       });
   }

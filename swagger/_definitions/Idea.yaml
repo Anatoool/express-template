@@ -1,11 +1,9 @@
 Idea:
   type: "object"
   properties:
-    id:
+    _id:
       type: "string"
     title:
       type: "string"
     description:
       type: "string"
-  xml:
-    name: "Idea"

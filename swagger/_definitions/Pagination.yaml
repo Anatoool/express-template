@@ -1,0 +1,11 @@
+Pagination:
+  type: "object"
+  properties:
+    page:
+      type: "number"
+    pageSize:
+      type: "number"
+    total:
+      type: "number"
+    maxPages:
+      type: "number"

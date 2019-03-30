@@ -6,6 +6,7 @@ const createSwaggerDocument = () => {
 
   // definitions of models
   const ideaDefinition = YAML.load('./swagger/_definitions/Idea.yaml');
+  const paginationDefinition = YAML.load('./swagger/_definitions/Pagination.yaml');
 
   // user routes
   const usersRegistration = YAML.load('./swagger/users/usersRegistration.yaml');
@@ -33,6 +34,7 @@ const createSwaggerDocument = () => {
     },
     definitions: {
       ...ideaDefinition,
+      ...paginationDefinition,
     },
   };
 
