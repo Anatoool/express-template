@@ -25,14 +25,7 @@ paths:
           description: "Successful idea creation"
           schema:
             type: "object"
-            properties:
-              title:
-                type: "string"
-              description:
-                type: "string"
-              author:
-                type: "string"
-                example: "jksdn23r88bnz32fdpq9cs67k6djc12n"
+            $ref: "#/definitions/Idea"
         422:
           description: "Invalid input"
           schema:

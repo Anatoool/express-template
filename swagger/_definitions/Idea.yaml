@@ -7,3 +7,6 @@ Idea:
       type: "string"
     description:
       type: "string"
+    author:
+      type: "object"
+      $ref: "#/definitions/Author"

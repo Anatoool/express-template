@@ -1,0 +1,9 @@
+Author:
+  type: "object"
+  properties:
+    _id:
+      type: "string"
+    name:
+      type: "string"
+    role:
+      type: "string"
