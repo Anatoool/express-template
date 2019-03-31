@@ -11,6 +11,7 @@ const createSwaggerDocument = () => {
 
   // user routes
   const usersRegistration = YAML.load('./swagger/users/usersRegistration.yaml');
+  const usersUpdateProfile = YAML.load('./swagger/users/usersUpdateProfile.yaml');
   const usersConfirmEmail = YAML.load('./swagger/users/usersConfirmEmail.yaml');
   const usersLogin = YAML.load('./swagger/users/usersLogin.yaml');
   const usersRefreshToken = YAML.load('./swagger/users/usersRefreshToken.yaml');
@@ -25,8 +26,11 @@ const createSwaggerDocument = () => {
       // users
       ...usersLogin.paths,
       ...usersRefreshToken.paths,
-      ...usersRegistration.paths,
       ...usersConfirmEmail.paths,
+      '/users': {
+        ...usersRegistration.paths['/users'],
+        ...usersUpdateProfile.paths['/users'],
+      },
       // ideas
       '/ideas': {
         ...getIdeas.paths['/ideas'],
