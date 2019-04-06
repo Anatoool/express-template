@@ -5,4 +5,10 @@ module.exports = {
     name: "IdeaCreationError",
     messages: {},
   },
+  getIdea: {
+    _message: "Get idea failed",
+    message: "Get idea failed: idea not found",
+    name: "GetIdeaError",
+    error: true,
+  },
 };

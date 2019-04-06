@@ -18,6 +18,7 @@ const createSwaggerDocument = () => {
 
   // ideas routes
   const getIdeas = YAML.load('./swagger/ideas/getIdeas.yaml');
+  const getIdea = YAML.load('./swagger/ideas/getIdea.yaml');
   const createIdea = YAML.load('./swagger/ideas/createIdea.yaml');
 
   const swaggerDocument = {
@@ -33,9 +34,12 @@ const createSwaggerDocument = () => {
       },
       // ideas
       '/ideas': {
-        ...getIdeas.paths['/ideas'],
         ...createIdea.paths['/ideas'],
+        ...getIdeas.paths['/ideas'],
         },
+      '/ideas/{ideaId}': {
+        ...getIdea.paths['/ideas/{ideaId}'],
+      },
     },
     definitions: {
       ...authorDefinition,

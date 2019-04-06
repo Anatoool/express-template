@@ -1,0 +1,25 @@
+paths:
+  /ideas/{ideaId}:
+    get:
+      security:
+        - JWT: []
+      tags:
+      - "Ideas"
+      summary: "Get idea"
+      description: ""
+      operationId: "getIdea"
+      parameters:
+      - in: "path"
+        name: "ideaId"
+        type: "string"
+      responses:
+        200:
+          description: "Successful get idea"
+          schema:
+            type: "object"
+            properties:
+              idea:
+                type: "object"
+                $ref: "#/definitions/Idea"
+
+
