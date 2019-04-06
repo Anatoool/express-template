@@ -26,3 +26,7 @@ For start the development server:
 
 >npm run server
 
+Server starts on localhost:4000
+
+Swagger url: localhost:4000/swagger 
+
