@@ -26,3 +26,26 @@ paths:
             properties:
               response:
                 type: "string"
+        422:
+          description: "Invalid input"
+          schema:
+            type: "object"
+            properties:
+              _message:
+                type: "string"
+                example: "Profile update failed"
+              message:
+                type: "string"
+                example: "Profile update failed: {additional info}"
+              name:
+                type: "string"
+                example: "ProfileUpdateError"
+              messages:
+                type: "object"
+                properties:
+                  name:
+                    type: "string"
+                    example: "Name error example"
+              error:
+                type: "boolean"
+                example: true

@@ -5,4 +5,10 @@ module.exports = {
     name: "RegistrationError",
     messages: {},
   },
+  updateProfile: {
+    _message: "Profile update failed",
+    message: "Profile update failed:",
+    name: "ProfileUpdateError",
+    messages: {},
+  },
 };
