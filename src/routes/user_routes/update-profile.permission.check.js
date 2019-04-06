@@ -1,6 +1,6 @@
 const errorTemplates = require('../_errors/errors');
 
-const createPermissionCheck = async (req, res, next) => {
+const updateProfilePermissionCheck = async (req, res, next) => {
   const { user = {} } = req;
 
   const errors = {...errorTemplates.permission};
@@ -11,11 +11,11 @@ const createPermissionCheck = async (req, res, next) => {
     default:
       return res.status(403).send({
         ...errors,
-        message: `${errors.message} users with role '${user.role}' doesn't have access to idea creation`
+        message: `${errors.message} users with role '${user.role}' doesn't have access to profile update`
       });
   }
 
   next();
 };
 
-module.exports = createPermissionCheck;
+module.exports = updateProfilePermissionCheck;

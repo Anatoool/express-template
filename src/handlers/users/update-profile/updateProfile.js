@@ -1,6 +1,7 @@
 const userUpdateProfile = async (req, res) => {
-  const user = req.body;
-
+  const userUpdateInfo = req.body;
+  const { user = {} } = req;
+  console.log(user);
   return res.status(200).send({response: 'User was updated'});
 };
 

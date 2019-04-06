@@ -12,7 +12,7 @@ module.exports = function(app) {
 
   app.get('/ideas', asyncHandler(getIdeas));
 
-  app.post('/ideas', asyncHandler(( req, res, next ) => createPermissionCheck({ req, res, next })));
+  app.post('/ideas', asyncHandler(createPermissionCheck));
   app.post('/ideas', asyncHandler(createIdea));
 
 };
