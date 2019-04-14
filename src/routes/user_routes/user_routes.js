@@ -11,18 +11,18 @@ const userUpdateProfile = require('../../handlers/users/update-profile/updatePro
 // permission check
 const updateProfilePermissionCheck = require('./update-profile.permission.check');
 
-module.exports = function(app) {
+module.exports = function(api) {
 
-  app.post('/users', asyncHandler(userRegistration));
+  api.post('/users', asyncHandler(userRegistration));
 
-  app.put('/users', asyncHandler(getUserFromToken));
-  app.put('/users', asyncHandler(updateProfilePermissionCheck));
-  app.put('/users', asyncHandler(userUpdateProfile));
+  api.put('/users', asyncHandler(getUserFromToken));
+  api.put('/users', asyncHandler(updateProfilePermissionCheck));
+  api.put('/users', asyncHandler(userUpdateProfile));
 
-  app.post('/users/confirm', asyncHandler(userConfirmEmail));
+  api.post('/users/confirm', asyncHandler(userConfirmEmail));
 
-  app.post('/users/login', asyncHandler(userLogin));
+  api.post('/users/login', asyncHandler(userLogin));
 
-  app.post('/users/refresh', asyncHandler(userRefreshToken));
+  api.post('/users/refresh', asyncHandler(userRefreshToken));
 
 };

@@ -7,15 +7,15 @@ const createIdea = require('../../handlers/ideas/create/createIdea');
 const getIdeas = require('../../handlers/ideas/read/getIdeas');
 const getIdea = require('../../handlers/ideas/read/getIdea');
 
-module.exports = function(app) {
+module.exports = function(api) {
 
-  app.use('/ideas*', asyncHandler(getUserFromToken));
+  api.use('/ideas*', asyncHandler(getUserFromToken));
 
-  app.get('/ideas', asyncHandler(getIdeas));
+  api.get('/ideas', asyncHandler(getIdeas));
 
-  app.get('/ideas/:id', asyncHandler(getIdea));
+  api.get('/ideas/:id', asyncHandler(getIdea));
 
-  app.post('/ideas', asyncHandler(createPermissionCheck));
-  app.post('/ideas', asyncHandler(createIdea));
+  api.post('/ideas', asyncHandler(createPermissionCheck));
+  api.post('/ideas', asyncHandler(createIdea));
 
 };

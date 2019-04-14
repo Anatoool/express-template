@@ -6,6 +6,8 @@ info:
   contact:
     email: "anatoool@yandex.ru"
 
+basePath: /api
+
 schemes:
   - http
   - https
