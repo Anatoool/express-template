@@ -7,6 +7,10 @@ Technologies
 - [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 - [Swagger](https://github.com/scottie1984/swagger-ui-express) + [yaml](https://github.com/jeremyfa/yaml.js)
 
+Docker deployment
+--------------------
+> docker build -t express-template .
+
 Deployment
 --------------------
 Install [MongoDB](https://www.mongodb.com/download-center/community)

@@ -1,11 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const config = require('./src/settings/config');
-const appRoutes = require('./src/routes/index');
+const config = require('./settings/config');
+const appRoutes = require('./routes');
 const swaggerUi = require('swagger-ui-express');
-const launch = require('./src/launch');
+const launch = require('./launch');
 const serverCORS = require('./server-cors');
-const createSwaggerDocument = require('./swagger/swaggerDocument');
+const createSwaggerDocument = require('../swagger/swaggerDocument');
 
 launch(config);
 
