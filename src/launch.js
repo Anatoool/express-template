@@ -16,7 +16,7 @@ module.exports = async (config) => {
   try {
 
     mongoose.connection.on('connected', function(){
-      console.log(connected("Mongoose default connection is open to ", 'mongodb://localhost:' + config.dbPort +'/first-db'));
+      console.log(connected("Mongoose default connection is open to ", 'mongodb://db:' + config.dbPort +'/first-db'));
     });
 
     mongoose.connection.on('error', function(err){
@@ -34,7 +34,7 @@ module.exports = async (config) => {
       });
     });
 
-    await mongoose.connect('mongodb://localhost:' + config.dbPort +'/first-db', mongooseOptions);
+    await mongoose.connect('mongodb://db:' + config.dbPort +'/first-db', mongooseOptions);
     deleteExpiredRefreshTokens();
 
   } catch (err) {

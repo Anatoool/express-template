@@ -11,7 +11,7 @@ Docker deployment
 --------------------
 > docker build -t express-template .
 >
-> docker run -p 4000:4000 express-template:latest
+> docker-compose up
 
 Deployment
 --------------------
