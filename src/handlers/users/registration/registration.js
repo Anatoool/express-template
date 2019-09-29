@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const userScheme = require('../../../database/schemes/userScheme');
 const userSendConfirmationMail = require('../../../emails/registration-confirmation/registrationConfirm');
 const userRegistrationValidate = require('./registrationValidate');
@@ -15,7 +15,9 @@ const userRegistration = async (req, res) => {
     return res.status(422).send({...errors});
   }
 
-  const hashedPassword = await bcrypt.hash(user.password, 10);
+  const salt = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hashSync(user.password, salt);
+
   const confirmCode =
     Math.random().toString(36).substring(2, 15) +
     Math.random().toString(36).substring(2, 15) +

@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const mongooseFindOne = require('../../../database/queries/mongooseFindOne');
 const mongooseFindByIdAndUpdate = require('../../../database/queries/mongooseFindByIdAndUpdate');
 const createTokens = require('../../../helpers/createTokens');
@@ -16,7 +16,7 @@ const userLogin = async (req, res) => {
     confirmed = false,
     refreshTokens = [],
   } = user || {};
-  const passwordIsCorrect = await bcrypt.compare(password, hashedPassword);
+  const passwordIsCorrect = await bcrypt.compareSync(password, hashedPassword);
 
   if (!passwordIsCorrect || !user) {
     return res.status(401).send({
